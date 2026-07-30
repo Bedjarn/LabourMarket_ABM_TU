@@ -1,0 +1,18 @@
+# Python cache and local runtime noise
+__pycache__/
+*.py[cod]
+
+# Temp / scratch files
+*.tmp
+
+# Local agent and editor tooling (not part of the model)
+.claude/
+.agents/
+.review/
+.vscode/
+
+# Generated model outputs (created on demand at run time)
+model/outputs/
+
+# Office lock files
+~$*
