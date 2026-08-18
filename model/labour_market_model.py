@@ -1465,7 +1465,7 @@ class LabourMarketModel(Model):
             # thesis is derived from these two rates as
             #   u = 1 - (n_high*e_h + n_low*e_l) / (n_high + n_low)
             # in multirun_experiments.add_unemployment_rate(); with 450
-            # workers and 400 tasks the baseline floor is ~11%.
+            # workers and 400 tasks the starting distribution is ~11% unemployed.
             "employment_rate_high": n_high_employed / max(1, n_high),
             "employment_rate_low":  n_low_employed  / max(1, n_low),
             "skill_wage_premium":   self.w_h / self.w_l if self.w_l > 0 else float("nan"),

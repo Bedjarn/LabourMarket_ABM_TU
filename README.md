@@ -52,7 +52,7 @@ and F cover the calibration and the full parameter table.
 
 ## Experiments
 
-The eight experiments reported in chapter 6 are saved as workbooks in
+The eight experiments reported in chapter 5 are saved as workbooks in
 `data/Experiments/`. They are produced by the multi-run Experimenter tab of the
 dashboard; `model/multirun_experiments.py` holds that logic (it is a module, not
 a stand-alone script).
@@ -86,10 +86,3 @@ Runs are seeded, so the reported results reproduce exactly on the pinned
 dependency versions in `requirements.txt`.
 
 ---
-
-## Also available
-
-The source code is mirrored at
-<https://github.com/Bedjarn/LabourMarket_ABM_TU>. The LaTeX source of the
-manuscript and internal working documents are kept separately and are not part
-of this deliverable.
