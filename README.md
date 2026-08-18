@@ -35,19 +35,61 @@ Dependencies are pinned in [requirements.txt](requirements.txt)
 
 ## Package layout
 
-- `model/` — Python source (core ABM, dashboard, runners)
-- `data/` — input spreadsheets + saved experiment workbooks
-- `notebooks/` — verification and validation notebooks
-- `scripts/` — helper scripts
+- `model/` — Python source (core ABM, dashboard, runners, analysis scripts)
+- `data/` — input spreadsheets + saved experiment workbooks (`data/Experiments/`)
+- `notebooks/` — verification and validation notebooks, incl. saved figures
+- `scripts/` — helper scripts used to generate thesis figures
+- `thesis.pdf` — the thesis manuscript this code accompanies
 
-See `model/` and `data/` for detailed descriptions and the experiment table.
+The model is a single script, `model/labour_market_model.py`, organised by the
+seven conceptual components (C1–C7) and the macro-feedback layer (M1) of the
+thesis. Every code block carries the identifier of its component as an inline
+comment, so all code belonging to one component can be found by searching for
+its tag. Appendix A of `thesis.pdf` documents the implementation; appendices C
+and F cover the calibration and the full parameter table.
 
 ---
 
-## Not included
+## Experiments
 
-The thesis manuscript (LaTeX source/PDF) and internal working documents are
-kept separately and are not part of this code deliverable.
+The eight experiments reported in chapter 6 are saved as workbooks in
+`data/Experiments/`. They are produced by the multi-run Experimenter tab of the
+dashboard; `model/multirun_experiments.py` holds that logic (it is a module, not
+a stand-alone script).
 
-If anything still looks odd on GitHub, tell me which section and I will adjust
-the rendering or formatting.
+| # | Workbook suffix | What it varies |
+|---|---|---|
+| E1 | `baseline_meanfield_vs_ulc` | Forward-looking NPV baseline vs. the myopic ULC rule |
+| E2 | `meanfield_off_vs_ulc` | Contribution of the forward-looking decision logic alone |
+| E3 | `employment_protection_on_off` | Contribution of the Dutch employment-protection institutions |
+| E4 | `ai_cost_trajectory` | The AI cost curve (falling, flat, rising) |
+| E5 | `nr_multiplier_comparative_advantage` | AI's comparative advantage on non-routine vs. routine tasks |
+| E6 | `minimum_wage` | The statutory wage floor |
+| E7 | `severance` | The transitievergoeding rate |
+| E8 | `transition_probability_pconvert` | Conversion probability at the chain-regulation limit |
+
+Verification and validation are in `notebooks/`, reproducing appendices D and E
+of the thesis; the saved figures are in
+`notebooks/validation/validation_figures/`.
+
+---
+
+## Reproducing the results
+
+```bash
+python model/run_live_dashboard.py          # dashboard; the Experimenter tab reruns E1–E8
+python model/run_model.py                   # all four adoption modes, one seed, one parameter set
+python model/analysis/OFAT_sensitivity.py   # one-factor-at-a-time sensitivity sweep
+```
+
+Runs are seeded, so the reported results reproduce exactly on the pinned
+dependency versions in `requirements.txt`.
+
+---
+
+## Also available
+
+The source code is mirrored at
+<https://github.com/Bedjarn/LabourMarket_ABM_TU>. The LaTeX source of the
+manuscript and internal working documents are kept separately and are not part
+of this deliverable.
